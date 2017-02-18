@@ -1,2 +1,21 @@
 # hexo-tag-oembed
-Embed tag plugin for Hexo.
+oEmbed tag plugin for Hexo.
+
+* Twitter
+* Youtube
+* Vimeo
+* Flickr
+* Instagram
+* Gyazo
+* Codepen
+* はてなブログカード
+
+## Install
+```
+npm install hexo-tag-oembed --save
+```
+
+## Usage
+```
+{%oembed permalink }
+```

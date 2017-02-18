@@ -1,0 +1,22 @@
+{
+  "name": "hexo-tag-oembed",
+  "version": "1.0.0",
+  "description": "Embed tag plugin for Hexo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monsier-oui/hexo-tag-oembed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monsier-oui/hexo-tag-oembed/issues"
+  },
+  "homepage": "https://github.com/monsier-oui/hexo-tag-oembed#readme",
+  "dependencies": {
+    "request-promise": "^4.1.1"
+  }
+}
