@@ -10,11 +10,6 @@ oEmbed tag plugin for Hexo.
 * Codepen
 * はてなブログカード
 
-## Install
-```
-npm install hexo-tag-oembed --save
-```
-
 ## Usage
 ```
 {%oembed permalink }
