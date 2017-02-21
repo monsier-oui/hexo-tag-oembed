@@ -12,5 +12,5 @@ oEmbed tag plugin for Hexo.
 
 ## Usage
 ```
-{%oembed permalink }
+{%oembed permalink %}
 ```
