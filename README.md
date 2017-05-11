@@ -8,7 +8,6 @@ oEmbed tag plugin for Hexo.
 * Instagram
 * Gyazo
 * Codepen
-* はてなブログカード
 
 ## Usage
 ```
