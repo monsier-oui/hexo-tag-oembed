@@ -9,7 +9,12 @@ oEmbed tag plugin for Hexo.
 * Gyazo
 * Codepen
 
+## Install
+```
+npm install hexo-tag-oembed --save
+```
+
 ## Usage
 ```
-{%oembed permalink %}
+{%oembed [permalink] %}
 ```

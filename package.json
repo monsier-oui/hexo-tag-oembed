@@ -10,8 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/monsier-oui/hexo-tag-oembed.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "hexo",
+    "plugin"
+  ],
+  "author": "oui",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/monsier-oui/hexo-tag-oembed/issues"
   },
