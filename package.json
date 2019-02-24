@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/monsier-oui/hexo-tag-oembed#readme",
   "dependencies": {
+    "open-graph-scraper": "^3.6.1",
     "request-promise": "^4.1.1"
   }
 }

@@ -2,6 +2,7 @@
 
 var requestpromise = require('request-promise');
 var querystring = require('querystring');
+var ogs = require('open-graph-scraper');
 
 hexo.extend.tag.register(
   'oembed',
@@ -32,36 +33,64 @@ hexo.extend.tag.register(
       endpoint = 'https://embed.runkit.com/oembed';
     }
 
-    var getRequest = function(uri) {
-      return requestpromise({
-        uri: uri,
-        transform2xxOnly: true,
-        transform: function(body) {
-          return JSON.parse(body);
-        }
-      });
-    };
-
-    var req = endpoint + '?' + querystring.stringify(opts);
-    return getRequest(req)
-      .then(function(data) {
-        switch (data.type) {
-          case 'photo':
+    if(endpoint.length > 0){
+      var getRequest = function(uri) {
+        return requestpromise({
+          uri: uri,
+          transform2xxOnly: true,
+          transform: function(body) {
+            return JSON.parse(body);
+          }
+        });
+      };
+      
+      var req = endpoint + '?' + querystring.stringify(opts);
+      return getRequest(req)
+        .then(function(data) {
+          switch (data.type) {
+            case 'photo':
             var alt = data.title ? ' alt="' + data.title + '"' : '';
             return '<a href="' + opts['url'] + '"><img src="' + data.url + '"' + alt + '></a>';
             break;
-          case 'video':
-          case 'rich':
+            case 'video':
+            case 'rich':
             return data.html;
             break;
-          default:
+            default:
             return;
             break;
-        }
-      })
-      .catch(function(err) {
-        console.log(err.statusCode + ': ' + req);
-      });
+          }
+        })
+        .catch(function(err) {
+          console.error(err.statusCode + ': ' + req);
+        });
+    }else{
+      return ogs({ 'url': opts.url })
+        .then(function(results){
+          var data = results.data;
+          var image = null;
+          if(hexo.config.oembed){
+            if(hexo.config.oembed.noimage){
+              console.dir(data);
+              if(data.ogImage && data.ogImage.length > 0){
+                image = Array.isArray(data.ogImage) ? data.ogImage[0].url : data.ogImage.url;
+              }
+              if(!image && hexo.config.oembed.noimage) image = hexo.config.oembed.noimage;
+            }
+          }
+          
+          return '<figure class="hexo-tag-oembed">'+
+            (image ? '<img src="'+image+'">' : '')+
+            '<figcaption>'+
+            '<a href="'+data.ogUrl+'" class="hexo-tag-oembed__title" target="_blank" rel="noopener">'+data.ogTitle+'</a>'+
+            (data.ogDescription ? '<span class="hexo-tag-oembed__description">'+data.ogDescription+'</span>' : '')+
+            '</figcaption>'+
+            '</figure>';
+        })
+        .catch(function(error){
+          console.error(error);
+        });
+    }
   },
   {
     async: true

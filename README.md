@@ -15,6 +15,12 @@ oEmbed tag plugin for Hexo.
 npm install hexo-tag-oembed --save
 ```
 
+## Config
+```_config.yml
+oembed:
+  noimage: {path/to/noimage.png}
+```
+
 ## Usage
 ```
 {%oembed [permalink] %}
