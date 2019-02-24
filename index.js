@@ -71,7 +71,6 @@ hexo.extend.tag.register(
           var image = null;
           if(hexo.config.oembed){
             if(hexo.config.oembed.noimage){
-              console.dir(data);
               if(data.ogImage && data.ogImage.length > 0){
                 image = Array.isArray(data.ogImage) ? data.ogImage[0].url : data.ogImage.url;
               }
