@@ -73,6 +73,7 @@ hexo.extend.tag.register(
             if(hexo.config.oembed.noimage){
               if(data.ogImage && data.ogImage.length > 0){
                 image = Array.isArray(data.ogImage) ? data.ogImage[0].url : data.ogImage.url;
+                image = image.startsWith('http') ? image : null;
               }
               if(!image && hexo.config.oembed.noimage) image = hexo.config.oembed.noimage;
             }
@@ -81,7 +82,7 @@ hexo.extend.tag.register(
           return '<figure class="hexo-tag-oembed">'+
             (image ? '<img src="'+image+'">' : '')+
             '<figcaption>'+
-            '<a href="'+data.ogUrl+'" class="hexo-tag-oembed__title" target="_blank" rel="noopener">'+data.ogTitle+'</a>'+
+            '<a href="'+(data.ogUrl ? data.ogUrl : opts.url)+'" class="hexo-tag-oembed__title" target="_blank" rel="noopener">'+data.ogTitle+'</a>'+
             (data.ogDescription ? '<span class="hexo-tag-oembed__description">'+data.ogDescription+'</span>' : '')+
             '</figcaption>'+
             '</figure>';
